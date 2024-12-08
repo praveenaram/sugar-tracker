@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            background-image: url('/static/background.jpg'); /* Path to your background image */
+            background-size: cover; /* Ensures the background covers the entire page */
+            background-position: center; /* Centers the background image */
+            background-repeat: no-repeat; /* Prevents the background from repeating */
+            font-family: Arial, sans-serif;
+            color: white; /* White text for contrast against the background */
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.5); /* Slightly transparent background for text container */
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 100px;
+            width: 80%;
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 1.2em;
+            color: #ffffff;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            height: 50px; /* Adjusted height for dropdown */
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Sugar Tracker</h1>
+        <form action="/" method="post">
+            <label for="senior_name">Select Your Name:</label>
+            <select id="senior_name" name="senior_name" required>
+                <option value="">-- Select --</option>
+                {% for name in senior_names %}
+                <option value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+
+    </div>
+</body>
+</html>

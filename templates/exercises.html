@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Exercises</title>
+</head>
+<body>
+    <h1>Recommended Exercises for You</h1>
+    <ul>
+        {% for exercise in exercises %}
+            <li>{{ exercise }}</li>
+        {% endfor %}
+    </ul>
+    <p>{{ reward }}</p>
+    <p><a href="/">Go Back</a></p>
+</body>
+</html>

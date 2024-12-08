@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Sugar Trends</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        h2 {
+            color: #333;
+        }
+        .chart-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .alert-box {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .alert-normal {
+            background-color: #e7f5e6;
+            border-color: #4CAF50;
+        }
+        .alert-warning {
+            background-color: #fff4e5;
+            border-color: #ff9800;
+        }
+        .alert-danger {
+            background-color: #fdecea;
+            border-color: #f44336;
+        }
+        .data-table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blood Sugar Trends</h1>
+
+    <div class="chart-container">
+        <h2>Your Blood Sugar Trends</h2>
+        <img src="data:image/png;base64,{{ chart }}" alt="Blood Sugar Trends Chart">
+    </div>
+
+<div class="alert-box">
+    <h2>Actual Sugar Analysis</h2>
+    <p>{{ alert | safe }}</p> <!-- The `|safe` filter allows inline HTML and CSS -->
+    <p><strong>Trend Details:</strong> {{ trend_detail }}</p>
+</div>
+
+    <div class="alert-box">
+        <h2>Predictive Insights</h2>
+        <p>{{ predictive_message }}</p>
+    </div>
+
+    <div class="data-table-container">
+        <h2>Recent Readings</h2>
+        {{ data|safe }}
+    </div>
+</body>
+</html>
