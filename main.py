@@ -16,18 +16,36 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
 
+# Load SENIOR_SPREADSHEET_MAPPING from environment variables
+spreadsheet_mapping_json = os.getenv("SENIOR_SPREADSHEET_MAPPING", "{}")
+SENIOR_SPREADSHEET_MAPPING = json.loads(spreadsheet_mapping_json)
+
+# Load Google credentials from environment variables
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+
 
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
 client = gspread.authorize(creds)
 
-# Spreadsheet mapping: name -> spreadsheet ID
-SENIOR_SPREADSHEET_MAPPING = {
-    "Shantha": "1gZyGc1iC1iCm1UQDcM38j6K2L-5HHf4JVgin28Gbh38",
-    "Jane Smith": "2B3C4D5E6F7G8H9I0J1A",
-    "Alice Brown": "3C4D5E6F7G8H9I0J1A2B"
+
+credentials_json = {
+    "type": os.getenv("TYPE"),
+    "project_id": os.getenv("PROJECT_ID"),
+    "private_key_id": os.getenv("PRIVATE_KEY_ID"),
+    "private_key": os.getenv("PRIVATE_KEY").replace("\\n", "\n"),
+    "client_email": os.getenv("CLIENT_EMAIL"),
+    "client_id": os.getenv("CLIENT_ID"),
+    "auth_uri": os.getenv("AUTH_URI"),
+    "token_uri": os.getenv("TOKEN_URI"),
+    "auth_provider_x509_cert_url": os.getenv("AUTH_PROVIDER_X509_CERT_URL"),
+    "client_x509_cert_url": os.getenv("CLIENT_X509_CERT_URL"),
 }
+
+creds = ServiceAccountCredentials.from_json_keyfile_dict(credentials_json, scope)
+client = gspread.authorize(creds)
+
 
 # Get data from Google Sheets
 def get_sugar_data(spreadsheet_id):
