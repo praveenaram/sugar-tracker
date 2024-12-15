@@ -25,12 +25,6 @@ SENIOR_SPREADSHEET_MAPPING = json.loads(spreadsheet_mapping_json)
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 
-# Google Sheets setup
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
-client = gspread.authorize(creds)
-
-
 credentials_json = {
     "type": os.getenv("TYPE"),
     "project_id": os.getenv("PROJECT_ID"),
