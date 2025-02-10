@@ -319,8 +319,12 @@ def trends():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 8080))  # Ensure Render can set the port dynamically
-    print(f"🚀 Starting Flask app on port {port}...")
-    app.run(host='0.0.0.0', port=port, debug=True)
+    try:
+        port = int(os.environ.get("PORT", 8080))  # Ensure Render sets the correct port
+        print(f"✅ Attempting to start Flask app on port {port}...")
+        app.run(host='0.0.0.0', port=port, debug=True)
+        print("🚀 Flask is now running!")
+    except Exception as e:
+        print(f"❌ Flask failed to start: {str(e)}")
 
 
