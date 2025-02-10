@@ -319,6 +319,8 @@ def trends():
 
 
 if __name__ == '__main__':
-   app.run(host='0.0.0.0', port=8080)
+port = int(os.environ.get("PORT", 8080))  # Ensure Render can set the port dynamically
+    print(f"Starting Flask app on port {port}...")
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 
